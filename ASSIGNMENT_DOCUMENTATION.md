@@ -1,8 +1,8 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
-**Date Submitted**: [Submission Date]
+**Student Name**: [Razan alharbi]  
+**Student ID**: [445052130]  
+**Date Submitted**: [7/5/2026]
 
 ---
 
@@ -31,9 +31,9 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [7may, 6:40pm]
 **What I implemented**: 
-
+first commit add my ID
 **Challenges encountered**: 
 
 **How I solved it**: 
@@ -41,12 +41,12 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**: 
 
 **Time spent**: 
-
+3min
 ---
 
-### Entry 2 - [Date, Time]
+### Entry 2 - [7may, 7:20pm]
 **What I implemented**: 
-
+ finish edit code ( todo1 and todo2 )
 **Challenges encountered**: 
 
 **How I solved it**: 
@@ -54,12 +54,12 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**: 
 
 **Time spent**: 
-
+maybe 20min
 ---
 
-### Entry 3 - [Date, Time]
+### Entry 3 - [7may, 2:27]
 **What I implemented**: 
-
+finsh edit code ( todo3)
 **Challenges encountered**: 
 
 **How I solved it**: 
@@ -67,12 +67,12 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**: 
 
 **Time spent**: 
-
+8min
 ---
 
-### Entry 4 - [Date, Time]
+### Entry 4 - [7may, 7:50]
 **What I implemented**: 
-
+finsh edit code (todo4)
 **Challenges encountered**: 
 
 **How I solved it**: 
@@ -80,7 +80,7 @@ Document your development process with **minimum 3 entries** showing progression
 **Testing approach**: 
 
 **Time spent**: 
-
+20min
 ---
 
 ### Entry 5 - [Date, Time]
@@ -105,8 +105,8 @@ Document your development process with **minimum 3 entries** showing progression
 - What incorrect behavior could occur?
 
 **Your Answer**:
-
-[Your answer here - 4-6 sentences with code examples]
+[A race condition occurs when multiple threads try to update contextSwitchCount or totalWaitingTime simultaneously, causing some updates to be lost. This happens because operations like count++ are not atomic and can be interrupted
+]
 
 ---
 
@@ -115,7 +115,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+[I used ReentrantLocks to protect specific data (counters and logs) from concurrent access, and a Semaphore to control access to the CPU resource. Locks ensure data integrity, while Semaphores manage the flow of processes]
 
 ---
 
@@ -124,7 +124,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+[Deadlock is when threads wait for each other forever; I prevented it by using try-finally blocks to ensure locks are always released. I also avoided nested locks by using a fine-grained locking design.]
 
 ---
 
@@ -137,7 +137,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
+[I chose Fine-grained locking (separate locks) because the counters are independent. This approach provides better concurrency and performance as threads don't have to wait for a single global lock to update unrelated data.]
 
 ---
 
@@ -146,52 +146,52 @@ Document your development process with **minimum 3 entries** showing progression
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
-
+contextSwitchCount, completedProcessCount, and totalWaitingTime.
 **Why they need protection**: 
 
 **Synchronization mechanism used**: 
-
+These are shared variables accessed by multiple threads. Without protection, "lost updates" occur because the increment operation (++) is not atomic.
 **Code snippet**:
 ```java
 // Paste your implementation here
 ```
 
 **Justification**: 
-
+Using separate locks for each counter allows threads to update different statistics simultaneously, improving performance while ensuring data accuracy
 ---
 
 ### Critical Section #2: Execution Log
 
 **What resource**: 
-
+The ArrayList<String> executionLog
 **Why it needs protection**: 
-
+ArrayList is not thread-safe. If two processes try to add a log message at the same time, it can lead to data corruption or a ConcurrentModificationException
 **Synchronization mechanism used**: 
-
+ReentrantLock (specifically logLock).
 **Code snippet**:
 ```java
 // Paste your implementation here
 ```
 
 **Justification**: 
-
+The lock ensures that only one thread can modify the log list at a time, maintaining a consistent and ordered history of execution.
 ---
 
 ### Critical Section #3: CPU Semaphore
 
 **Purpose of semaphore**: 
-
+To simulate the CPU resource and control process execution flow
 **Number of permits and why**: 
-
+This makes it a "Binary Semaphore," ensuring that only one process can be "Running" on the CPU at any given moment.
 **Where implemented**: 
-
+In the run() method of the Process class
 **Code snippet**:
 ```java
 // Paste your implementation here
 ```
 
 **Effect on program behavior**: 
-
+prevents multiple processes from executing their logic simultaneously, correctly simulating a single-core CPU environment where processes must wait their turn.
 ---
 
 ## Part 4: Testing and Verification (2 marks)
@@ -251,7 +251,7 @@ Document your development process with **minimum 3 entries** showing progression
 
 ### What I learned about synchronization:
 
-[6-8 sentences about key concepts, challenges, insights]
+[I learned that synchronization is essential to prevent Race Conditions when multiple threads access shared data. Using ReentrantLocks ensures mutual exclusion, while the try-finally block prevents Deadlocks by ensuring locks are always released. I also learned that Fine-grained locking (using multiple locks) improves performance by allowing independent resources to be updated simultaneously. Finally, Semaphores helped me control the execution flow and simulate CPU access limits.]
 
 ---
 
@@ -260,9 +260,9 @@ Document your development process with **minimum 3 entries** showing progression
 Give TWO examples where synchronization is critical:
 
 **Example 1**: 
-
+Banking Systems: To ensure account balances are updated correctly when multiple transactions happen at once.
 **Example 2**: 
-
+Ticket Booking: To prevent the same seat from being sold to two different customers simultaneously.
 ---
 
 ### How I would explain synchronization to others:
@@ -288,7 +288,7 @@ Give TWO examples where synchronization is critical:
 ## Summary
 
 **Total time spent on assignment**: 
-
+2hours
 **Key takeaways**: 
 1. 
 2. 
